@@ -1,18 +1,39 @@
 [
   {
-    "text": "What does Pikachu evolve into?",
+    "text": "Which Pokemon does Pikachu evolve into?",
     "choices": [
       {"text": "Bulbasaur"},
       {"text": "Raichu", "correct": true},
-      {"text": "Charizard"}
+      {"text": "Charizard"},
+      {"text": "Pichu"}
     ]
   },
   {
-    "text": "What does Charmander evolve into?",
+    "text": "Which Pokemon does Charmander evolve into?",
     "choices": [
       {"text": "Bulbasaur"},
       {"text": "Raichu"},
-      {"text": "Charmeleon", "correct": true}
+      {"text": "Charmeleon", "correct": true},
+      {"text": "Blastoise"}
+    ]
+  },
+  {
+    "text": "Which of the following is not a legendary Pokemon?",
+    "choices": [
+      {"text": "Mewtwo"},
+      {"text": "Mew", "correct": true},
+      {"text": "Heatran"},
+      {"text": "Lugia"}
+    ]
+  },
+  {
+    "text": "Which of the following is not the name of a Pokemon Game?",
+    "choices": [
+      {"text": "Red"},
+      {"text": "Platinum"},
+      {"text": "Pearl"},
+      {"text": "Bronze", "correct": true},
+      {"text": "Crystal"}
     ]
   }
 ]
