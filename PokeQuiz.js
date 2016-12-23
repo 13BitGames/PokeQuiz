@@ -21,10 +21,17 @@ export default class PokeQuiz extends Component {
   }
 
   startQuiz() {
+    // Shuffle question order
+    let questions = shuffleArray(QUESTIONS);
+    // Shuffle choices order for each question
+    for (var i = 0; i < questions.length; i++) {
+      questions[i].choices = shuffleArray(questions[i].choices);
+    }
+
     this.setState({
       score: 0,
       questionIndex: 0,
-      questions: shuffleArray(QUESTIONS),
+      questions: questions,
       progress: 0,
       screen: 'quiz',
     });
@@ -88,7 +95,6 @@ export default class PokeQuiz extends Component {
 
   renderQuizScreen() {
     let question = this.state.questions[this.state.questionIndex];
-    let shuffledChoices = shuffleArray(question.choices);
 
     let scoreText = this.state.score;
     if (this.state.score > 0) {
@@ -100,7 +106,7 @@ export default class PokeQuiz extends Component {
         <Text style={styles.header}>
           {question.text}
         </Text>
-        {shuffledChoices.map((choice, index) => (
+        {question.choices.map((choice, index) => (
           <View key={index} style={styles.buttonContainer}>
             <Button
               onPress={() => this.onChoiceSelected(choice)}
