@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  Button,
   StyleSheet,
   Text,
   View
@@ -52,9 +53,12 @@ export default class Puzzle1 extends Component {
           {question.text}
         </Text>
         {question.choices.map((choice, index) => (
-          <Text key={index} style={styles.instructions}>
-            {choice.text} - {choice.correct ? "CHOOSE THIS ONE" : "wrong"}
-          </Text>
+          <View key={index} style={styles.buttonContainer}>
+            <Button
+              color="white"
+              title={choice.text}
+            />
+          </View>
         ))}
         <Text style={styles.score}>
           {this.state.score}
@@ -69,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'yellow',
+    backgroundColor: '#fff',
   },
   welcome: {
     fontSize: 20,
@@ -81,11 +85,15 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  buttonContainer: {
+    margin: 5,
+    backgroundColor: 'blue',
+  },
   score: {
     textAlign: 'center',
     color: 'black',
     margin: 10,
-    fontSize: 20,
+    fontSize: 30,
   },
 });
 
