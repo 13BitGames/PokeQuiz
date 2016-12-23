@@ -47,16 +47,28 @@ export default class Puzzle1 extends Component {
 
   onChoiceSelected(choice) {
     let scoreDelta;
+    let questionIndex = this.state.questionIndex;
 
     if (choice.correct) {
       Alert.alert('Hooray!');
       scoreDelta = 1;
+      questionIndex += 1;
     } else {
       Alert.alert('Boourns!');
       scoreDelta = -1;
     }
 
-    this.setState({score: this.state.score + scoreDelta});
+    this.setState({
+      score: this.state.score + scoreDelta
+    })
+
+    if (questionIndex > (QUESTIONS.length - 1)) {
+      Alert.alert('Game over');
+    } else {
+      this.setState({
+        questionIndex: questionIndex,
+      });
+    }
   }
 
   render() {
