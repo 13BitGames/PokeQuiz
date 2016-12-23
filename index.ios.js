@@ -13,7 +13,7 @@ import {
   Text,
   View
 } from 'react-native';
-
+const ProgressBar = require('./utilities/ProgressBar');
 
 const QUESTIONS = require('./data/questions.json');
 
@@ -23,8 +23,6 @@ export default class Puzzle1 extends Component {
 
     this.state = {
       screen: 'intro',
-      score: 0,
-      questionIndex: 0,
     };
   }
 
@@ -32,6 +30,7 @@ export default class Puzzle1 extends Component {
     this.setState({
       score: 0,
       questionIndex: 0,
+      progress: 0,
       screen: 'quiz',
     });
   }
@@ -39,16 +38,19 @@ export default class Puzzle1 extends Component {
   onChoiceSelected(choice) {
     let scoreDelta;
     let questionIndex = this.state.questionIndex;
+    let progress = this.state.progress;
 
     if (choice.correct) {
       scoreDelta = 1;
       questionIndex += 1;
+      progress = questionIndex / QUESTIONS.length;
     } else {
       Alert.alert('Boourns!');
       scoreDelta = -1;
     }
 
     this.setState({
+      progress: progress,
       score: this.state.score + scoreDelta
     });
 
@@ -114,6 +116,12 @@ export default class Puzzle1 extends Component {
           style={[styles.score, this.state.score >= 0 ? styles.colorPositive : styles.colorNegative]}>
           {scoreText}
         </Text>
+        <ProgressBar
+          fillStyle={{}}
+          backgroundStyle={{backgroundColor: '#cccccc', borderRadius: 2}}
+          style={{marginTop: 10, width: 300}}
+          progress={this.state.progress}
+        />
       </View>
     );
   }
