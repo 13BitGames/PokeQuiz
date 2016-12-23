@@ -31,6 +31,7 @@ export default class Puzzle1 extends Component {
     this.setState({
       score: 0,
       questionIndex: 0,
+      questions: shuffleArray(QUESTIONS),
       progress: 0,
       screen: 'quiz',
     });
@@ -92,7 +93,7 @@ export default class Puzzle1 extends Component {
   }
 
   renderQuizScreen() {
-    let question = QUESTIONS[this.state.questionIndex];
+    let question = this.state.questions[this.state.questionIndex];
     let shuffledChoices = shuffleArray(question.choices);
 
     let scoreText = this.state.score;
