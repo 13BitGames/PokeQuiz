@@ -19,3 +19,6 @@ and insert the following to fix it:
 ```
 export PATH=$HOME/local/bin:$HOME/n/bin:$PATH
 ```
+
+Disable dead code stripping for Release per the following issue:
+https://github.com/facebook/react-native/issues/2685#issuecomment-142626306
