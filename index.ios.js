@@ -13,8 +13,9 @@ import {
   Text,
   View
 } from 'react-native';
-const ProgressBar = require('./utilities/ProgressBar');
 
+const shuffleArray = require('./utilities/ShuffleArray');
+const ProgressBar = require('./utilities/ProgressBar');
 const QUESTIONS = require('./data/questions.json');
 
 export default class Puzzle1 extends Component {
@@ -92,6 +93,7 @@ export default class Puzzle1 extends Component {
 
   renderQuizScreen() {
     let question = QUESTIONS[this.state.questionIndex];
+    let shuffledChoices = shuffleArray(question.choices);
 
     let scoreText = this.state.score;
     if (this.state.score > 0) {
@@ -103,7 +105,7 @@ export default class Puzzle1 extends Component {
         <Text style={styles.header}>
           {question.text}
         </Text>
-        {question.choices.map((choice, index) => (
+        {shuffledChoices.map((choice, index) => (
           <View key={index} style={styles.buttonContainer}>
             <Button
               onPress={() => this.onChoiceSelected(choice)}
