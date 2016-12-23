@@ -33,7 +33,7 @@ const QUESTIONS = [
 ];
 
 
-export default class PokeQuiz extends Component {
+export default class Puzzle1 extends Component {
   constructor(props) {
     super(props);
 
@@ -89,4 +89,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('PokeQuiz', () => PokeQuiz);
+AppRegistry.registerComponent('Puzzle1', () => Puzzle1);
