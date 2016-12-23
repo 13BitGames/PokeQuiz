@@ -76,7 +76,7 @@ export default class Puzzle1 extends Component {
   renderIntroScreen() {
     return (
       <View style={styles.container}>
-        <Text style={styles.intro}>PokéQuiz!</Text>
+        <Text style={styles.largeHeader}>PokéQuiz!</Text>
         <View style={[styles.buttonContainer, styles.largeButtonContainer]}>
           <Button
             onPress={() => this.startQuiz()}
@@ -121,13 +121,13 @@ export default class Puzzle1 extends Component {
   renderGameOverScreen() {
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>Game Over</Text>
+        <Text style={styles.largeHeader}>Game Over</Text>
         <Text>Final score:</Text>
         <Text
           style={[styles.score, this.state.score >= 0 ? styles.colorPositive : styles.colorNegative]}>
           {this.state.score}
         </Text>
-        <View style={styles.buttonContainer}>
+        <View style={[styles.buttonContainer, styles.largeButtonContainer]}>
           <Button
             onPress={() => this.startQuiz()}
             color="white"
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
   },
-  intro: {
+  largeHeader: {
     fontSize: 40,
     textAlign: 'center',
     margin: 35,
