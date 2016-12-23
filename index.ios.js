@@ -6,6 +6,7 @@
 
 import React, { Component } from 'react';
 import {
+  Alert,
   AppRegistry,
   Button,
   StyleSheet,
@@ -44,6 +45,10 @@ export default class Puzzle1 extends Component {
     };
   }
 
+  onChoiceSelected(choice) {
+    Alert.alert(`Button ${choice.text} has been pressed!`);
+  }
+
   render() {
     let question = QUESTIONS[this.state.questionIndex];
 
@@ -55,6 +60,7 @@ export default class Puzzle1 extends Component {
         {question.choices.map((choice, index) => (
           <View key={index} style={styles.buttonContainer}>
             <Button
+              onPress={() => this.onChoiceSelected(choice)}
               color="white"
               title={choice.text}
             />
