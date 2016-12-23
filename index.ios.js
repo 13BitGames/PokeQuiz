@@ -46,7 +46,11 @@ export default class Puzzle1 extends Component {
   }
 
   onChoiceSelected(choice) {
-    Alert.alert(`Button ${choice.text} has been pressed!`);
+    if (choice.correct) {
+      Alert.alert('Hooray!');
+    } else {
+      Alert.alert('Boourns!');
+    }
   }
 
   render() {
