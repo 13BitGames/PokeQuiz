@@ -31,33 +31,34 @@ export default class PokeQuiz extends Component {
   }
 
   onChoiceSelected(choice) {
-    let scoreDelta;
-    let questionIndex = this.state.questionIndex;
-    let progress = this.state.progress;
-
     if (choice.correct) {
-      scoreDelta = 1;
-      questionIndex += 1;
-      progress = questionIndex / QUESTIONS.length;
+      this.onCorrectChoiceSelected();
     } else {
-      Alert.alert('Boourns!');
-      scoreDelta = -1;
+      this.onWrongChoiceSelected();
     }
+  }
 
-    this.setState({
-      progress: progress,
-      score: this.state.score + scoreDelta
-    });
+  onCorrectChoiceSelected() {
+    let newQuestionIndex = this.state.questionIndex + 1;
 
-    if (questionIndex > (QUESTIONS.length - 1)) {
+    if (newQuestionIndex > (QUESTIONS.length - 1)) {
       this.setState({
         screen: 'gameover'
       });
     } else {
       this.setState({
-        questionIndex: questionIndex,
+        questionIndex: newQuestionIndex,
+        progress: newQuestionIndex / QUESTIONS.length,
+        score: this.state.score + 1,
       });
     }
+  }
+
+  onWrongChoiceSelected() {
+    this.setState({
+      score: this.state.score - 1,
+    });
+    Alert.alert('Boourns!');
   }
 
   render() {
