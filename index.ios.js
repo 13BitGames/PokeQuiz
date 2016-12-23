@@ -34,15 +34,23 @@ const QUESTIONS = [
   }
 ];
 
-
 export default class Puzzle1 extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      screen: 'intro',
       score: 0,
       questionIndex: 0,
     };
+  }
+
+  startQuiz() {
+    this.setState({
+      score: 0,
+      questionIndex: 0,
+      screen: 'quiz',
+    });
   }
 
   onChoiceSelected(choice) {
@@ -62,7 +70,9 @@ export default class Puzzle1 extends Component {
     });
 
     if (questionIndex > (QUESTIONS.length - 1)) {
-      Alert.alert('Game over');
+      this.setState({
+        screen: 'gameover'
+      });
     } else {
       this.setState({
         questionIndex: questionIndex,
@@ -71,6 +81,31 @@ export default class Puzzle1 extends Component {
   }
 
   render() {
+    if (this.state.screen === 'intro') {
+      return this.renderIntroScreen();
+    } else if (this.state.screen === 'quiz') {
+      return this.renderQuizScreen();
+    } else {
+      return this.renderGameOverScreen();
+    }
+  }
+
+  renderIntroScreen() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.welcome}>PokeQuiz!</Text>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={() => this.startQuiz()}
+            color="white"
+            title="Start!"
+          />
+        </View>
+      </View>
+    );
+  }
+
+  renderQuizScreen() {
     let question = QUESTIONS[this.state.questionIndex];
 
     let scoreText = this.state.score;
@@ -96,6 +131,26 @@ export default class Puzzle1 extends Component {
           style={[styles.score, this.state.score >= 0 ? styles.colorPositive : styles.colorNegative]}>
           {scoreText}
         </Text>
+      </View>
+    );
+  }
+
+  renderGameOverScreen() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.welcome}>Game Over</Text>
+        <Text>Final score:</Text>
+        <Text
+          style={[styles.score, this.state.score >= 0 ? styles.colorPositive : styles.colorNegative]}>
+          {this.state.score}
+        </Text>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={() => this.startQuiz()}
+            color="white"
+            title="Play Again!"
+          />
+        </View>
       </View>
     );
   }
