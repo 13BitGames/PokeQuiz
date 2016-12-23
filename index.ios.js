@@ -76,8 +76,8 @@ export default class Puzzle1 extends Component {
   renderIntroScreen() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>PokeQuiz!</Text>
-        <View style={styles.buttonContainer}>
+        <Text style={styles.intro}>PokéQuiz!</Text>
+        <View style={[styles.buttonContainer, styles.largeButtonContainer]}>
           <Button
             onPress={() => this.startQuiz()}
             color="white"
@@ -98,7 +98,7 @@ export default class Puzzle1 extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
+        <Text style={styles.header}>
           {question.text}
         </Text>
         {question.choices.map((choice, index) => (
@@ -121,7 +121,7 @@ export default class Puzzle1 extends Component {
   renderGameOverScreen() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Game Over</Text>
+        <Text style={styles.header}>Game Over</Text>
         <Text>Final score:</Text>
         <Text
           style={[styles.score, this.state.score >= 0 ? styles.colorPositive : styles.colorNegative]}>
@@ -146,24 +146,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
   },
-  welcome: {
+  intro: {
+    fontSize: 40,
+    textAlign: 'center',
+    margin: 35,
+  },
+  header: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    marginHorizontal: 20,
+    marginVertical: 20,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  largeButtonContainer: {
+    paddingVertical: 15,
+    paddingHorizontal: 30,
   },
   buttonContainer: {
-    margin: 5,
-    backgroundColor: 'blue',
+    margin: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    backgroundColor: '#1a8ebf',
   },
   score: {
     textAlign: 'center',
-    margin: 10,
-    fontSize: 30,
+    margin: 20,
+    fontSize: 40,
   },
   colorPositive: {
     color: 'green',
