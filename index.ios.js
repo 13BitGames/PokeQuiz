@@ -46,11 +46,17 @@ export default class Puzzle1 extends Component {
   }
 
   onChoiceSelected(choice) {
+    let scoreDelta;
+
     if (choice.correct) {
       Alert.alert('Hooray!');
+      scoreDelta = 1;
     } else {
       Alert.alert('Boourns!');
+      scoreDelta = -1;
     }
+
+    this.setState({score: this.state.score + scoreDelta});
   }
 
   render() {
