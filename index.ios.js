@@ -62,6 +62,11 @@ export default class Puzzle1 extends Component {
   render() {
     let question = QUESTIONS[this.state.questionIndex];
 
+    let scoreText = this.state.score;
+    if (this.state.score > 0) {
+      scoreText = '+' + scoreText;
+    }
+
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -76,8 +81,9 @@ export default class Puzzle1 extends Component {
             />
           </View>
         ))}
-        <Text style={styles.score}>
-          {this.state.score}
+        <Text
+          style={[styles.score, this.state.score >= 0 ? styles.colorPositive : styles.colorNegative]}>
+          {scoreText}
         </Text>
       </View>
     );
@@ -107,10 +113,15 @@ const styles = StyleSheet.create({
   },
   score: {
     textAlign: 'center',
-    color: 'black',
     margin: 10,
     fontSize: 30,
   },
+  colorPositive: {
+    color: 'green',
+  },
+  colorNegative: {
+    color: 'red',
+  }
 });
 
 AppRegistry.registerComponent('Puzzle1', () => Puzzle1);
