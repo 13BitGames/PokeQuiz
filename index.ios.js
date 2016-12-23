@@ -15,24 +15,7 @@ import {
 } from 'react-native';
 
 
-const QUESTIONS = [
-  {
-    text: "What does Pikachu evolve into?",
-    choices: [
-      {text: "Bulbasaur"},
-      {text: "Raichu", correct: true},
-      {text: "Charizard"},
-    ],
-  },
-  {
-    text: "What does Charmander evolve into?",
-    choices: [
-      {text: "Bulbasaur"},
-      {text: "Raichu"},
-      {text: "Charmeleon", correct: true},
-    ],
-  }
-];
+const QUESTIONS = require('./data/questions.json');
 
 export default class Puzzle1 extends Component {
   constructor(props) {
