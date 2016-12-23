@@ -50,7 +50,6 @@ export default class Puzzle1 extends Component {
     let questionIndex = this.state.questionIndex;
 
     if (choice.correct) {
-      Alert.alert('Hooray!');
       scoreDelta = 1;
       questionIndex += 1;
     } else {
@@ -60,7 +59,7 @@ export default class Puzzle1 extends Component {
 
     this.setState({
       score: this.state.score + scoreDelta
-    })
+    });
 
     if (questionIndex > (QUESTIONS.length - 1)) {
       Alert.alert('Game over');
